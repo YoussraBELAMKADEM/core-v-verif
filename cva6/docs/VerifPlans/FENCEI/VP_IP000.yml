@@ -1,0 +1,38 @@
+!Feature
+next_elt_id: 1
+name: 'Fetching '
+id: 0
+display_order: 0
+subfeatures: !!omap
+- 000_Fetching: !Subfeature
+    name: 000_Fetching
+    tag: VP_FENCEI_F000_S000
+    next_elt_id: 1
+    display_order: 0
+    items: !!omap
+    - '000': !VerifItem
+        name: '000'
+        tag: VP_FENCEI_F000_S000_I000
+        description: The instruction immediately before FENCE.I, the FENCE.I instruction
+          and the instruction immediately following FENCE.I are fetched into the CVA6.
+          Instruction data for the next PC must be fetched after the FENCE.I instruction
+          has executed (because only then can data-side stores have completed and
+          caches have been updated).
+        reqt_doc: CVA6 User Manual; https://cva6.readthedocs.io/en/latest/01_cva6_user/RISCV_Instructions.html#rv32zifencei-instruction-fetch-fence
+        ref_mode: page
+        ref_page: ''
+        ref_section: ''
+        ref_viewer: firefox
+        verif_goals: Check that after a FENCE.I instruction retires then instr-side
+          AXI fetches the next instruction to be executed. (in both cases; with and
+          without a FENCE.I instruction inserted)
+        pfc: 1
+        test_type: 10
+        cov_method: 1
+        cores: 56
+        coverage_loc: ''
+        comments: ''
+vptool_gitrev: '$Id: b0efb3ae3f9057b71a577d43c2b77f1cfb2ef82f $'
+io_fmt_gitrev: '$Id: 7ee5d68801f5498a957bcbe23fcad87817a364c5 $'
+config_gitrev: '$Id: 0422e19126dae20ffc4d5a84e4ce3de0b6eb4eb5 $'
+ymlcfg_gitrev: '$Id: 286c689bd48b7a58f9a37754267895cffef1270c $'
