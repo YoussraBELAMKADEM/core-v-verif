@@ -13,22 +13,21 @@ subfeatures: !!omap
     - '000': !VerifItem
         name: '000'
         tag: VP_FENCEI_F004_S000_I000
-        description: Any store instruction that is successfully executed before a
-          FENCE.I will fully complete and have its effect visible (this is not about
-          syncronization with instruction fetch, but rather seeing that the stores
-          are not aborted)
-        reqt_doc: CVA6 User Manual; https://cva6.readthedocs.io/en/latest/01_cva6_user/RISCV_Instructions.html#rv32zifencei-instruction-fetch-fenceThis
-          is a pointer to the source Requirements document of the Features in question.  The
-          pointer should state the version of the target document.  It is free-form,
-          so it can also indicate the specific section/page/paragraph.
+        description: A FENCE.I instruction ensures that a subsequent instruction fetch
+          on a RISC-V hart will see any previous data stores already visible to the
+          same RISC-V hart.
+        reqt_doc: "The RISC-V Instruction Set Manual\nUnprivileged ISA\nChapter 3"
         ref_mode: page
         ref_page: ''
         ref_section: ''
         ref_viewer: firefox
-        verif_goals: Check that all stores (either to next pc or other places) preceding
-          a fence.i will complete on the bus (excluding exceptions/interrupts/etc)
-          and be readable afterwards (particularly, ensure that the write buffer isn't
-          just purged).
+        verif_goals: "Any store instruction that is successfully executed before a\
+          \ FENCE.I will fully complete and have its effect visible (this is not about\
+          \ syncronization with instruction fetch, but rather seeing that the stores\
+          \ are not aborted)\nCheck that all stores (either to next pc or other places)\
+          \ preceding a fence.i will complete on the bus (excluding exceptions/interrupts/etc)\
+          \ and be readable afterwards (particularly, ensure that the write buffer\
+          \ isn't just purged)."
         pfc: 1
         test_type: 1
         cov_method: 10

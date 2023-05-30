@@ -13,16 +13,19 @@ subfeatures: !!omap
     - '000': !VerifItem
         name: '000'
         tag: VP_FENCEI_F005_S000_I000
-        description: When FENCE.I is executed, then any prefetched instructions shall
-          be flushed; meaning that pipeline stages are flushed, prefetcher is flushed,
-          write buffer is flushed, and mem_data_req_o (wt_dcache) is eventually supressed.
-        reqt_doc: CVA6 User Manual; https://cva6.readthedocs.io/en/latest/01_cva6_user/RISCV_Instructions.html#rv32zifencei-instruction-fetch-fence
+        description: The FENCE.I instruction was designed to support a wide variety
+          of implementations. A simple implementation can flush the local instruction
+          cache and the instruction pipeline when the FENCE.I is executed.
+        reqt_doc: "The RISC-V Instruction Set Manual\nUnprivileged ISA\nChapter 3"
         ref_mode: page
         ref_page: ''
         ref_section: ''
         ref_viewer: firefox
-        verif_goals: Check that a FENCE.I will cause flushing of the pipeline, prefetcher,
-          write buffer, and mem_data_req_o.
+        verif_goals: "When FENCE.I is executed, then any prefetched instructions shall\
+          \ be flushed; meaning that pipeline stages are flushed, prefetcher is flushed,\
+          \ write buffer is flushed, and mem_data_req_o (wt_dcache) is eventually\
+          \ supressed.\nCheck that a FENCE.I will cause flushing of the pipeline,\
+          \ prefetcher, write buffer, and mem_data_req_o."
         pfc: 4
         test_type: 4
         cov_method: 2
@@ -38,16 +41,19 @@ subfeatures: !!omap
     - '000': !VerifItem
         name: '000'
         tag: VP_FENCEI_F005_S001_I000
-        description: Conditioned flushing; check that the flushing is executed when
-          necessary! When FENCE.I is executed but the subsequent instruction is data_side
-          independent, the flushing does not have to operate.
-        reqt_doc: CVA6 User Manual; https://cva6.readthedocs.io/en/latest/01_cva6_user/RISCV_Instructions.html#rv32zifencei-instruction-fetch-fence
+        description: If instruction and data caches are kept coherent in this way,
+          or if the memory system consists of only uncached RAMs, then just the fetch
+          pipeline needs to be flushed at a FENCE.I.
+        reqt_doc: "The RISC-V Instruction Set Manual\nUnprivileged ISA\nChapter 3"
         ref_mode: page
         ref_page: ''
         ref_section: ''
         ref_viewer: firefox
-        verif_goals: Do a FENCE.I followed by an instruction independent to the one
-          preceding the FENCE.I, and check if the flushing is ignored
+        verif_goals: "Conditioned flushing; check that the flushing is executed when\
+          \ necessary! When FENCE.I is executed but the subsequent instruction is\
+          \ data_side independent, the flushing does not have to operate.\nDo a FENCE.I\
+          \ followed by an instruction independent to the one preceding the FENCE.I,\
+          \ and check if the flushing is ignored"
         pfc: 1
         test_type: -1
         cov_method: 2
@@ -63,9 +69,9 @@ subfeatures: !!omap
     - '000': !VerifItem
         name: '000'
         tag: VP_FENCEI_F005_S002_I000
-        description: When a FENCE.I invoke the fluching request, we should make sure
-          that it's well acknowledged.
-        reqt_doc: CVA6 User Manual; https://cva6.readthedocs.io/en/latest/01_cva6_user/RISCV_Instructions.html#rv32zifencei-instruction-fetch-fence
+        description: "[Not in specification] When a FENCE.I invoke the fluching request,\
+          \ we should make sure that it's well acknowledged."
+        reqt_doc: CVA6 User Manual
         ref_mode: page
         ref_page: ''
         ref_section: ''

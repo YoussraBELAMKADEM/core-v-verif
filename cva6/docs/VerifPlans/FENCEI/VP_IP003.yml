@@ -13,9 +13,10 @@ subfeatures: !!omap
     - '000': !VerifItem
         name: '000'
         tag: VP_FENCEI_F003_S000_I000
-        description: Given zero stalls on neither instr-side and data-side AXI, the
-          execution of the FENCE.I should take a fixed number of cycles.
-        reqt_doc: CVA6 User Manual; https://cva6.readthedocs.io/en/latest/01_cva6_user/RISCV_Instructions.html#rv32zifencei-instruction-fetch-fence
+        description: '[Not in specification] Given zero stalls on neither instr-side
+          and data-side AXI, the execution of the FENCE.I should take a fixed number
+          of cycles.'
+        reqt_doc: CVA6 User Manual
         ref_mode: page
         ref_page: ''
         ref_section: ''

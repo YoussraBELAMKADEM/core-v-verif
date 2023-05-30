@@ -13,19 +13,23 @@ subfeatures: !!omap
     - '000': !VerifItem
         name: '000'
         tag: VP_FENCEI_F000_S000_I000
-        description: The instruction immediately before FENCE.I, the FENCE.I instruction
-          and the instruction immediately following FENCE.I are fetched into the CVA6.
-          Instruction data for the next PC must be fetched after the FENCE.I instruction
-          has executed (because only then can data-side stores have completed and
-          caches have been updated).
-        reqt_doc: CVA6 User Manual; https://cva6.readthedocs.io/en/latest/01_cva6_user/RISCV_Instructions.html#rv32zifencei-instruction-fetch-fence
+        description: "The FENCE.I instruction is used to synchronize the instruction\
+          \ and data streams. RISC-V does not guarantee that stores to instruction\
+          \ memory will be made visible to instruction fetches on the same RISC-V\
+          \ hart until a FENCE.I instruction is executed. \n\nPseudocode: Fence(Store,\
+          \ Fetch)"
+        reqt_doc: CVA6 User Manual
         ref_mode: page
         ref_page: ''
         ref_section: ''
         ref_viewer: firefox
-        verif_goals: Check that after a FENCE.I instruction retires then instr-side
-          AXI fetches the next instruction to be executed. (in both cases; with and
-          without a FENCE.I instruction inserted)
+        verif_goals: "The instruction immediately before FENCE.I, the FENCE.I instruction\
+          \ and the instruction immediately following FENCE.I are fetched into the\
+          \ CVA6. Instruction data for the next PC must be fetched after the FENCE.I\
+          \ instruction has executed (because only then can data-side stores have\
+          \ completed and caches have been updated).\nCheck that after a FENCE.I instruction\
+          \ retires then instr-side AXI fetches the next instruction to be executed.\
+          \ (in both cases; with and without a FENCE.I instruction inserted)"
         pfc: 1
         test_type: 10
         cov_method: 1

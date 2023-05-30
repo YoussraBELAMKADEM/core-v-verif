@@ -13,43 +13,26 @@ subfeatures: !!omap
     - '000': !VerifItem
         name: '000'
         tag: VP_FENCEI_F001_S000_I000
-        description: After a FENCE.I instruction has been executed, all preceding
-          store instructions shall have their effects visible to the Instruction Fetch
-          of the instructions that are to be executed after the FENCE.I instruction.
-        reqt_doc: "The RISC-V Instruction Set Manual\nVolume I: Unprivileged ISA\n\
-          Document Version 20191213\nhttps://riscv.org/wp-content/uploads/2019/12/riscv-spec-20191213.pdf"
-        ref_mode: section
-        ref_page: '31'
-        ref_section: Chapter 3
+        description: The FENCE.I instruction is used to synchronize the instruction
+          and data streams. RISC-V does not guarantee that stores to instruction memory
+          will be made visible to instruction fetches on a RISC-V hart until that
+          hart executes a FENCE.I instruction. To make a store to instruction memory
+          visible to all RISC-V harts, the writing hart has to execute a data FENCE
+          before requesting that all remote RISC-V harts execute a FENCE.I.
+        reqt_doc: "The RISC-V Instruction Set Manual\nUnprivileged ISA\nChapter 3"
+        ref_mode: page
+        ref_page: ''
+        ref_section: ''
         ref_viewer: firefox
-        verif_goals: Do a FENCE.I, but right before the fencei do a store to the instruction
-          following the FENCE.I, then see that the newly stored value is executed
-          instead of the old instruction (e.g. change addi to use a different immediate).
+        verif_goals: "After a FENCE.I instruction has been executed, all preceding\
+          \ store instructions shall have their effects visible to the Instruction\
+          \ Fetch of the instructions that are to be executed after the FENCE.I instruction.\n\
+          Do a FENCE.I, but right before the fencei do a store to the instruction\
+          \ following the FENCE.I, then see that the newly stored value is executed\
+          \ instead of the old instruction (e.g. change addi to use a different immediate)."
         pfc: 3
         test_type: 3
         cov_method: 1
-        cores: 56
-        coverage_loc: ''
-        comments: ''
-    - '001': !VerifItem
-        name: '001'
-        tag: VP_FENCEI_F001_S000_I001
-        description: After a FENCE.I instruction has been executed, all preceding
-          store instructions shall have their effects visible to the Instruction Fetch
-          of the instructions that are to be executed after the FENCE.I instruction.
-        reqt_doc: "The RISC-V Instruction Set Manual\nVolume I: Unprivileged ISA\n\
-          Document Version 20191213\nhttps://riscv.org/wp-content/uploads/2019/12/riscv-spec-20191213.pdf"
-        ref_mode: section
-        ref_page: '31'
-        ref_section: Chapter 3
-        ref_viewer: firefox
-        verif_goals: Check that after having read one value from an address, then
-          after storing a value to that same address, if executing that address then
-          the value shall always be that which was written (should work well in both
-          sim/formal).
-        pfc: 4
-        test_type: 2
-        cov_method: 10
         cores: 56
         coverage_loc: ''
         comments: ''

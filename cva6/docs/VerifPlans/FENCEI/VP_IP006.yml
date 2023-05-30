@@ -13,13 +13,14 @@ subfeatures: !!omap
     - '000': !VerifItem
         name: '000'
         tag: VP_FENCEI_F006_S000_I000
-        description: imm[11:0], rs1, rd are reserved for future extensions, and implementations
-          shall ignore them
-        reqt_doc: "The RISC-V Instruction Set Manual\nVolume I: Unprivileged ISA\n\
-          Document Version 20191213\nhttps://riscv.org/wp-content/uploads/2019/12/riscv-spec-20191213.pdf"
-        ref_mode: section
-        ref_page: '31'
-        ref_section: Chapter 3
+        description: The unused fields in the FENCE.I instruction, imm[11:0], rs1,
+          and rd, are reserved for finer-grain fences in future extensions. For forward
+          compatibility, base implementations shall ignore these fields, and standard
+          software shall zero these fields.
+        reqt_doc: "The RISC-V Instruction Set Manual\nUnprivileged ISA\nChapter 3"
+        ref_mode: page
+        ref_page: ''
+        ref_section: ''
         ref_viewer: firefox
         verif_goals: Try giving random values in those fields and see that all else
           works as expected
